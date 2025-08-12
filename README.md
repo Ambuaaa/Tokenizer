@@ -1,4 +1,5 @@
-🪄 Tokenizer Encoder / Decoder
+ Tokenizer Encoder / Decoder
+ 
 A simple yet powerful character-based tokenizer built with HTML, JavaScript, and Tailwind CSS.
 It can encode text into unique token codes and decode token sequences back into text.
 
