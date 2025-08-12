@@ -84,5 +84,18 @@ document.getElementById('decodeBtn').addEventListener('click', () => {
   const text =  document.getElementById('decoderInput').value ;
   const decoded = tokenizer.decode(text) // calling our decode method from the class
   document.getElementById('resultBox').textContent = decoded ;
+  })
+
+// copy
+document.getElementById('copyBtn').addEventListener('click', () => {
+  const text = document.getElementById('resultBox').innerText ; // jiska copy karna hai uska id mil gaya (result ka )
+
+  navigator.clipboard.writeText(text).then( () => {
+    alert('Copied to clipboard');
+  })
+  .catch( (err) => {
+    alert('Failed to copy: ', err) ; 
+  })
 })
+
 
