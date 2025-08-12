@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Tokenizer Documentation</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        line-height: 1.6;
+        background: #f9f9f9;
+        color: #333;
+    }
+    h1, h2 {
+        color: #444;
+    }
+    .container {
+        max-width: 900px;
+        margin: auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    pre {
+        background: #eee;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+    }
+    button {
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        margin-top: 5px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    button:hover {
+        background: #0056b3;
+    }
+    #tokenMap {
+        display: none;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        margin-top: 10px;
+    }
+    .map-item {
+        background: #f1f1f1;
+        padding: 5px;
+        border-radius: 4px;
+        text-align: center;
+        border: 1px solid #ddd;
+    }
+    .demo-box {
+        margin-top: 15px;
+        padding: 10px;
+        background: #fdfdfd;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1> Simple Tokenizer Documentation </h1>
+    <p>This documentation explains how the <u>Simple Tokenizer</u> works, including mapping of characters to tokens, tokenizing strings, and decoding tokens back to text.</p>
+
+    <h2>1. Overview</h2>
+    <p>The Simple Tokenizer assigns a unique number (token) to each character. This allows text to be represented as a sequence of numbers for processing, and then converted back into characters.</p>
+
+    <h2>2. Example Tokenizer Code</h2>
+    <pre><code>class SimpleTokenizer {
+    constructor() {
+        this.charToToken = {};
+        this.tokenToChar = {};
+        let tokenId = 1;
+
+        // Lowercase letters (a=1, b=2, ...)
+        for (let i = 0; i < 26; i++) {
+            let ch = String.fromCharCode(97 + i);
+            this.charToToken[ch] = tokenId;
+            this.tokenToChar[tokenId] = ch;
+            tokenId++;
+        }
+        // Numbers
+        for (let i = 0; i < 10; i++) {
+            let ch = String.fromCharCode(48 + i);
+            this.charToToken[ch] = tokenId;
+            this.tokenToChar[tokenId] = ch;
+            tokenId++;
+        }
+    }
+
+    tokenize(text) {
+        return text.split('').map(c => this.charToToken[c] || 0);
+    }
+
+    decode(tokens) {
+        return tokens.map(t => this.tokenToChar[t] || '?').join('');
+    }
+}</code></pre>
+
+    <h2>3. Interactive Demo</h2>
+    <div class="demo-box">
+        <label>Enter text: </label>
+        <input type="text" id="inputText">
+        <button onclick="runDemo()">Tokenize & Decode</button>
+        <p><strong>Tokens:</strong> <span id="tokensOutput"></span></p>
+        <p><strong>Decoded:</strong> <span id="decodedOutput"></span></p>
+    </div>
+
+    <h2>4. Character Mapping</h2>
+    <button id="viewMappingBtn" onclick="toggleTokenMapping()">View Character Mapping</button>
+    <div id="tokenMap"></div>
+</div>
+
+<script>
+    // Simple Tokenizer Implementation
+    class SimpleTokenizer {
+        constructor() {
+            this.charToToken = {};
+            this.tokenToChar = {};
+            let tokenId = 1;
+            for (let i = 0; i < 26; i++) {
+                let ch = String.fromCharCode(97 + i);
+                this.charToToken[ch] = tokenId;
+                this.tokenToChar[tokenId] = ch;
+                tokenId++;
+            }
+            for (let i = 0; i < 10; i++) {
+                let ch = String.fromCharCode(48 + i);
+                this.charToToken[ch] = tokenId;
+                this.tokenToChar[tokenId] = ch;
+                tokenId++;
+            }
+        }
+        tokenize(text) {
+            return text.split('').map(c => this.charToToken[c] || 0);
+        }
+        decode(tokens) {
+            return tokens.map(t => this.tokenToChar[t] || '?').join('');
+        }
+    }
+
+    const tokenizer = new SimpleTokenizer();
+
+    function runDemo() {
+        const text = document.getElementById('inputText').value.toLowerCase();
+        const tokens = tokenizer.tokenize(text);
+        const decoded = tokenizer.decode(tokens);
+        document.getElementById('tokensOutput').textContent = tokens.join(' ');
+        document.getElementById('decodedOutput').textContent = decoded;
+    }
+
+    function toggleTokenMapping() {
+        const tokenMapDiv = document.getElementById('tokenMap');
+        const btn = document.getElementById('viewMappingBtn');
+
+        if (tokenMapDiv.style.display === 'none' || tokenMapDiv.style.display === '') {
+            tokenMapDiv.style.display = 'grid';
+            btn.textContent = 'Hide Character Mapping';
+        } else {
+            tokenMapDiv.style.display = 'none';
+            btn.textContent = 'View Character Mapping';
+        }
+    }
+
+    // Populate mapping grid
+    const mapContainer = document.getElementById('tokenMap');
+    Object.entries(tokenizer.charToToken).forEach(([char, token]) => {
+        const div = document.createElement('div');
+        div.classList.add('map-item');
+        div.textContent = `${char} → ${token}`;
+        mapContainer.appendChild(div);
+    });
+</script>
+</body>
+</html>
