@@ -3,6 +3,7 @@ A simple yet powerful character-based tokenizer built with HTML, JavaScript, and
 It can encode text into unique token codes and decode token sequences back into text.
 
 Perfect for learning about tokenization, encoding/decoding logic, or just having fun with text transformations.
+-----------------------------------------------------------------------------------------------------------
 
 📸 Demo
 <img width="1523" height="912" alt="image" src="https://github.com/user-attachments/assets/3b6c36e2-97c6-49f7-8f3b-e61ff1a05514" />
@@ -13,7 +14,7 @@ Encoded-
 Decoded - 
 
 <img width="1088" height="691" alt="image" src="https://github.com/user-attachments/assets/ec83a0ea-bc7b-42f7-ac53-88c6f3096007" />
-
+--------------------------------------------------------------------------------------------------------------------
 
 ✨ Features
 Encode text → tokens
@@ -29,7 +30,7 @@ Fast and lightweight
 No backend required , runs completely in the browser.
 
 Clean UI with Tailwind CSS.
-
+---------------------------------------------------------------------------------------------------------------------
 🛠️ How It Works
 Tokenizer Class
 Maps characters to token IDs (charToToken) and tokens back to characters (tokenToChar).
@@ -48,7 +49,7 @@ Decoding
 Splits the token string by spaces.
 Converts IDs back into characters using tokenToChar.
 Unknown tokens (0) become a ? in the output.
-
+--------------------------------------------------------------------------------------------------------------------
 🚀 Getting Started
 
 1️⃣ Clone the Repository
@@ -64,7 +65,7 @@ Just open index.html in your favorite browser , no installation needed.
 ├── index.html          # Main UI
 ├── documentation.html  # Extra documentation page
 ├── script.js           # Tokenizer logic
-
+-------------------------------------------------------------------------------------------------------------------
 💻 Usage
 Encoding
 
@@ -85,11 +86,11 @@ Encoded:
 
 Decoded Back:
 Hello!
-
+------------------------------------------------------------------------------------------------------------------------
 📌 Notes
 Token IDs are static the same character always maps to the same number.
-
 Unknown characters are replaced with ? during decoding.
+
 
 🧑‍💻 Author
 -Abhishek Kumar
